@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type"
+        content="text/html; charset=utf-8">
+        <titlе>Главная - Список заметок</titlе>
+    </head>
+<body>
+<hl>Объявления</hl>
+{% for note in notes %}
+<div>
+    <h2>{{ note.title }}</h2>
+    <p>{{ note.content }}</p>
+    <p>{{ note.published|date:"d.m.Y H:i:s"}}</p>
+</div>
+{% endfor %}
+</body>
+</html>
+
+

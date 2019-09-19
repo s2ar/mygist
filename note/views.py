@@ -1,6 +1,17 @@
 from django.http import HttpResponse
+from django.shortcuts import render
+from django.template  import loader
+
+
+from .models import Note
+
 
 def index(request):
-    return HttpResponse('Here is a list of notes')
 
+    template = loader.get_template('note/index.html')
+    notes = Note.objects
+    content = {'notes': notes}
+
+    return render(request, 'note/index.html', content)
+    #return HttpResponse(template.render(content, request))
 
