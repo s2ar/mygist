@@ -34,3 +34,4 @@ class Category(models.Model):
         ordering = ['name']
 
 
+

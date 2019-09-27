@@ -1,26 +1,11 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type"
-        content="text/html; charset=utf-8">
-        <titlе>Главная - Список заметок</titlе>
-    </head>
-<body>
-<hl>Объявления</hl>
-<div>
-    <a href="{% url 'index' %}">Главная</a>
-    {% for category in categories %}
-    <a href="{% url 'by_category' category.pk%}">{{category.name}}</a>
-    {% endfor %}
-</div>
+{% extends 'layout/basic.html' %}
+
+{% block content %}
 {% for note in notes %}
-<div>
+<div class="b">
     <h2>{{ note.title }}</h2>
     <p>{{ note.content }}</p>
     <p>{{ note.published|date:"d.m.Y H:i:s"}}</p>
 </div>
 {% endfor %}
-</body>
-</html>
-
-
+{% endblock %}

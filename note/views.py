@@ -1,7 +1,10 @@
 # from django.http import HttpResponse
+from django.views.generic.edit import CreateView
 from django.shortcuts import render
+from django.urls import reverse_lazy
 # from django.template import loader
 from .models import Note, Category
+from .forms import NoteForm
 
 
 def index(request):
@@ -24,3 +27,12 @@ def by_category(request, category_id):
     return render(request, 'note/by_category.html', context)
 
 
+class NoteCreateView(CreateView):
+    template_name = 'note/create.html'
+    form_class = NoteForm
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.all()
+        return context
